@@ -24,6 +24,7 @@ sequelize
     })
     .catch((err) => {
         console.error('Error syncing database:', err);
+        process.exit(1)
     });
 
 app.listen(port, () => {
