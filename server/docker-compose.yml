@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   mysql:
+    restart: always
     image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
@@ -11,6 +12,7 @@ services:
 
   node:
     build: .
+    restart: always
     environment:
       DB_HOST: "mysql"
       DB_PORT: ${DB_PORT}
