@@ -12,4 +12,6 @@ COPY . /usr/src/app
 
 EXPOSE 1212
 
+CMD ["npm", "start"]
+
 
