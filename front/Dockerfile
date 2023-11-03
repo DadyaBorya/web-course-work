@@ -1,16 +1,18 @@
-FROM node:14 AS builder
+FROM node:18 as build
 
-WORKDIR /app
-COPY package.json package-lock.json ./
+WORKDIR /front
+
+COPY package*.json ./
+
 RUN npm install
+
 COPY . .
+
 RUN npm run build
 
-FROM nginx:1.21
+FROM nginx:alpine
 
-COPY --from=builder /app/build /usr/share/nginx/html
-
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /front/build /usr/share/nginx/html
 
 EXPOSE 80
 
